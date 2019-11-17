@@ -11,6 +11,7 @@ try {
 }
 
 let storedData;
+let code = fs.readFileSync('src/bot.js', 'utf8');
 
 try {
 	storedData = JSON.parse(fs.readFileSync('data/data.json'));
@@ -84,9 +85,10 @@ client.on("message", async message => {
 		message.channel.send('Current Prefix: \'' + serverData.prefix + '\'\n' 
 							+ 'List of Commands: \n' 
 							+ '  ● help\n'
-							+ '  ● setPrefix [prefix] - Sets new Prefix\n'
-							+ '  ● limitChannel - Toggles channel lock\n'
-							+ '  ● timeout [@user] [time] - Sends user to afk channel for time sekonds\n'
+							+ '  ● setPrefix [prefix] - Sets new Prefix.\n'
+							+ '  ● limitChannel - Toggles channel lock.\n'
+							+ '  ● timeout [@user] [time] - Sends user to afk channel for time sekonds.\n'
+							+ '  ● code - Sends the source code of the bot.\n'
 							+ '  ● ping\n')
 	}
 
@@ -167,6 +169,15 @@ client.on("message", async message => {
 		// The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
 		const m = await message.channel.send("Ping?");
 		m.edit(`Pong! Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+	}
+
+	if (command === "code") {
+		let text = code;
+		while (text.length > 2000) {
+			message.channel.send(text.substring(0, 2000));
+			text = text.substring(2000);
+		}
+		
 	}
 });
 
