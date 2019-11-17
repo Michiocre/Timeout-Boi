@@ -5,7 +5,8 @@
 	"main": "bot.js",
 	"author": "Michiocre",
 	"scripts": {
-		"start": "node bot.js"
+		"start": "node src/bot.js",
+		"dev": "nodemon src/bot.js"
 	},
 	"dependencies": {
 		"discord.js": "^11.5.1",
