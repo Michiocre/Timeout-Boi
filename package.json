@@ -4,11 +4,8 @@
 	"description": "Timeouts people for certain periods of time",
 	"main": "bot.js",
 	"author": "Michiocre",
-	"scripts": {
-		"start": "node bot.js"
-	},
 	"dependencies": {
-		"discord.js": "^11.5.1",
+		"discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
 		"winston": "^3.2.1"
 	}
 }
